@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>Take_A_Hike_</RootNamespace>
+    <RootNamespace>TakeAHike</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

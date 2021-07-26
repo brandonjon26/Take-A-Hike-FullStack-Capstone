@@ -1,9 +1,9 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
-import QuoteList from "./QuoteList";
-import QuoteAddForm from "./QuoteAddForm";
+// import QuoteList from "./QuoteList";
+// import QuoteAddForm from "./QuoteAddForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
     return (

@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Take_A_Hike_": {
+    "TakeAHike": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

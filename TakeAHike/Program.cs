@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Take_A_Hike_
+namespace TakeAHike
 {
     public class Program
     {

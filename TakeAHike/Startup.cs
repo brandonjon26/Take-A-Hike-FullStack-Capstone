@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Take_A_Hike_
+namespace TakeAHike
 {
     public class Startup
     {
@@ -48,7 +48,7 @@ namespace Take_A_Hike_
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Take_A_Hike_", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TakeAHike", Version = "v1" });
 
                 var securitySchema = new OpenApiSecurityScheme
                 {
@@ -79,7 +79,7 @@ namespace Take_A_Hike_
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Take_A_Hike_ v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TakeAHike v1"));
             }
 
             app.UseHttpsRedirection();

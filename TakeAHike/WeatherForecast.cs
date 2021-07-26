@@ -1,6 +1,6 @@
 using System;
 
-namespace Take_A_Hike_
+namespace TakeAHike
 {
     public class WeatherForecast
     {
