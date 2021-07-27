@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TakeAHike.Repositories
 {
-    public class UserRepository
+    public class ParkRepository
     {
     }
 }
