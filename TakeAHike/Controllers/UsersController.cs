@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using TakeAHike.Models;
 using TakeAHike.Repositories;
-using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 namespace TakeAHike.Controllers
 {
@@ -42,10 +41,10 @@ namespace TakeAHike.Controllers
         {
             users.userTypeId = userType.USER_ID;
             _usersRepository.Add(users);
-            return CreatedAtAction(
-                nameof(GetUser),
-                new { firebaseUserId = users.FireBaseUserId },
-                users);
+            return CreatedAtAction("Get", new { id = users.Id }, users);
+            //nameof(GetUser),
+            //new { firebaseUserId = users.FireBaseUserId },
+            //users);
         }
     }
 }

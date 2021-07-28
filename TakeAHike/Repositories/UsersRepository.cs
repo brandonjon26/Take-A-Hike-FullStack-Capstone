@@ -1,8 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Tabloid.Utils;
 using TakeAHike.Models;
 
@@ -41,7 +37,7 @@ namespace TakeAHike.Repositories
                             firstName = DbUtils.GetString(reader, "firstName"),
                             lastName = DbUtils.GetString(reader, "lastName"),
                             email = DbUtils.GetString(reader, "email"),
-                            userTypeId = DbUtils.GetInt(reader, "suerTypeId"),
+                            userTypeId = DbUtils.GetInt(reader, "userTypeId"),
                             userType = new userType()
                             {
                                 Id = DbUtils.GetInt(reader, "UserTypeId"),
