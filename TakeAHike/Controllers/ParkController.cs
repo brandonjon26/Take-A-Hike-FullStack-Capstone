@@ -25,5 +25,12 @@ namespace TakeAHike.Controllers
         {
             return Ok(_parksRepository.GetAllParks());
         }
+
+        [HttpPost]
+        public IActionResult Post(Park park)
+        {
+            _parksRepository.AddPark(park);
+            return CreatedAtAction(nameof(GetAll), new { Id = park.Id }, park);
+        }
     }
 }
