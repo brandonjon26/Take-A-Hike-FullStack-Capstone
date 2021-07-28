@@ -6,5 +6,6 @@ namespace TakeAHike.Repositories
     public interface IParkRepository
     {
         List<Park> GetAllParks();
+        public void AddPark(Park park);
     }
 }

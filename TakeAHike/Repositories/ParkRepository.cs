@@ -46,5 +46,31 @@ namespace TakeAHike.Repositories
                 }
             }
         }
+
+        public void AddPark(Park park)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO parks (parkName, description, contactInfo, imageURL, address, websiteLink)
+                                        OUTPUT INSERTED.ID
+                                        VALUES (@parkName, @description, @contactInfo, @imageUrl, @address, @websiteLink)
+                    ";
+
+                    DbUtils.AddParameter(cmd, "@parkName", park.ParkName);
+                    DbUtils.AddParameter(cmd, "@description", park.Description);
+                    DbUtils.AddParameter(cmd, "@contactInfo", park.ContactInfo);
+                    DbUtils.AddParameter(cmd, "@imageURL", park.ImageUrl);
+                    DbUtils.AddParameter(cmd, "@address", park.Address);
+                    DbUtils.AddParameter(cmd, "@websiteLink", park.WebsiteLink);
+
+                    int id = (int)cmd.ExecuteScalar();
+
+                    park.Id = id;
+                }
+            }
+        }
     }
 }
