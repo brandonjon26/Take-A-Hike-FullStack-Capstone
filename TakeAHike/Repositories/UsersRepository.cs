@@ -51,7 +51,30 @@ namespace TakeAHike.Repositories
                     }
                     reader.Close();
 
-                    return userProfile;
+                    return users;
+                }
+            }
+        }
+
+        public void Add(Users users)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO UserProfile (FireBaseUserId, firstName, lastName, 
+                                                                 email, userTypeId)
+                                        OUTPUT INSERTED.ID
+                                        VALUES (@FireBaseUserId, @firstName, @lastName, 
+                                                @email, @userTypeId)";
+                    DbUtils.AddParameter(cmd, "@FireBaseUserId", users.FireBaseUserId);
+                    DbUtils.AddParameter(cmd, "@firstName", users.firstName);
+                    DbUtils.AddParameter(cmd, "@lastName", users.lastName);
+                    DbUtils.AddParameter(cmd, "@email", users.email);
+                    DbUtils.AddParameter(cmd, "@userTypeId", users.userTypeId);
+
+                    users.Id = (int)cmd.ExecuteScalar();
                 }
             }
         }

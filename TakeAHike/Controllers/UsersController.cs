@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TakeAHike.Models;
+using TakeAHike.Repositories;
+using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 namespace TakeAHike.Controllers
 {
@@ -37,11 +40,11 @@ namespace TakeAHike.Controllers
         [HttpPost]
         public IActionResult Post(Users users)
         {
-            users.UserTypeId = UserType.AUTHOR_ID;
+            users.userTypeId = userType.USER_ID;
             _usersRepository.Add(users);
             return CreatedAtAction(
                 nameof(GetUser),
-                new { firebaseUserId = users.FirebaseUserId },
+                new { firebaseUserId = users.FireBaseUserId },
                 users);
         }
     }

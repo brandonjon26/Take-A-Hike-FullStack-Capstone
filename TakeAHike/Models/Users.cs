@@ -13,5 +13,6 @@ namespace TakeAHike.Models
         public string email { get; set; }
         public string FireBaseUserId { get; set; }
         public int userTypeId { get; set; }
+        public userType userType { get; set; }
     }
 }
