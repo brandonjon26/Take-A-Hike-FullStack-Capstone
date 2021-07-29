@@ -109,5 +109,35 @@ namespace TakeAHike.Repositories
                 }
             }
         }
+
+        public void UpdatePark(Park park)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                            UPDATE parks
+                                SET parkName = @parkName,
+                                    description = @description,
+                                    contactInfo = @contactInfo,
+                                    imageURL = @imageURL,
+                                    address = @address,
+                                    websiteLink = @websiteLink
+                            WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@parkName", park.ParkName);
+                    DbUtils.AddParameter(cmd, "@description", park.Description);
+                    DbUtils.AddParameter(cmd, "@contactInfo", park.ContactInfo);
+                    DbUtils.AddParameter(cmd, "@imageURL", park.ImageUrl);
+                    DbUtils.AddParameter(cmd, "@address", park.Address);
+                    DbUtils.AddParameter(cmd, "@websiteLink", park.WebsiteLink);
+                    DbUtils.AddParameter(cmd, "@Id", park.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

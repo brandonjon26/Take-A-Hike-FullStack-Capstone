@@ -7,5 +7,7 @@ namespace TakeAHike.Repositories
     {
         List<Park> GetAllParks();
         public void AddPark(Park park);
+        public Park GetById(int id);
+        public void UpdatePark(Park park);
     }
 }
