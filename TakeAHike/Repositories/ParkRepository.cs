@@ -72,5 +72,42 @@ namespace TakeAHike.Repositories
                 }
             }
         }
+
+        public Park GetById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                SELECT parkName, description, contactInfo, imageURL, address, websiteLink
+                                FROM parks
+                                WHERE id = @id";
+
+                    DbUtils.AddParameter(cmd, "@id", id);
+
+                    var reader = cmd.ExecuteReader();
+
+                    Park park = null;
+                    if (reader.Read())
+                    {
+                        park = new Park()
+                        {
+                            Id = id,
+                            ParkName = DbUtils.GetString(reader, "parkName"),
+                            Description = DbUtils.GetString(reader, "description"),
+                            ContactInfo = DbUtils.GetString(reader, "contactInfo"),
+                            ImageUrl = DbUtils.GetString(reader, "imageURL"),
+                            Address = DbUtils.GetString(reader, "address"),
+                            WebsiteLink = DbUtils.GetString(reader, "websiteLink"),
+
+                        };
+                    }
+                    reader.Close();
+                    return park;
+                }
+            }
+        }
     }
 }
