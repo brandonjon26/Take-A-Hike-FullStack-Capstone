@@ -4,6 +4,7 @@ import Login from "./Login";
 import Register from "./Register";
 import Home from "./Home";
 import { ParkList } from "./parks/ParkList";
+import { AddParkForm } from "./parks/AddParkForm";
 
 
 export default function ApplicationViews({ isLoggedIn }) {
@@ -22,7 +23,11 @@ export default function ApplicationViews({ isLoggedIn }) {
                     {isLoggedIn ? <Home /> : <Redirect to="/login" />}
                 </Route>
 
-                <Route path="/Park">
+                <Route path="/Park/add" exact>
+                    <AddParkForm />
+                </Route>
+
+                <Route path="/Park" exact>
                     <ParkList />
                 </Route>
             </Switch>

@@ -21,7 +21,7 @@ export const getAllParks = () => {
 
 export const addPark = (park) => {
     return getToken().then((token) => {
-        return fetch(`${baseUrl}/add`, {
+        return fetch(`${baseUrl}`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`,

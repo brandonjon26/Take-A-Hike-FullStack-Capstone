@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { addPark } from "../../modules/parkManager";
 
 export const AddParkForm = () => {
-    const [par, setPark] = useState({
+    const [park, setPark] = useState({
         parkName: "",
         description: "",
         contactInfo: "",
@@ -11,7 +11,7 @@ export const AddParkForm = () => {
         address: "",
         websiteLink: ""
     });
-    consy[isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
 
     const handleFieldChange = (event) => {

@@ -72,5 +72,72 @@ namespace TakeAHike.Repositories
                 }
             }
         }
+
+        public Park GetById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                SELECT parkName, description, contactInfo, imageURL, address, websiteLink
+                                FROM parks
+                                WHERE id = @id";
+
+                    DbUtils.AddParameter(cmd, "@id", id);
+
+                    var reader = cmd.ExecuteReader();
+
+                    Park park = null;
+                    if (reader.Read())
+                    {
+                        park = new Park()
+                        {
+                            Id = id,
+                            ParkName = DbUtils.GetString(reader, "parkName"),
+                            Description = DbUtils.GetString(reader, "description"),
+                            ContactInfo = DbUtils.GetString(reader, "contactInfo"),
+                            ImageUrl = DbUtils.GetString(reader, "imageURL"),
+                            Address = DbUtils.GetString(reader, "address"),
+                            WebsiteLink = DbUtils.GetString(reader, "websiteLink"),
+
+                        };
+                    }
+                    reader.Close();
+                    return park;
+                }
+            }
+        }
+
+        public void UpdatePark(Park park)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                            UPDATE parks
+                                SET parkName = @parkName,
+                                    description = @description,
+                                    contactInfo = @contactInfo,
+                                    imageURL = @imageURL,
+                                    address = @address,
+                                    websiteLink = @websiteLink
+                            WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@parkName", park.ParkName);
+                    DbUtils.AddParameter(cmd, "@description", park.Description);
+                    DbUtils.AddParameter(cmd, "@contactInfo", park.ContactInfo);
+                    DbUtils.AddParameter(cmd, "@imageURL", park.ImageUrl);
+                    DbUtils.AddParameter(cmd, "@address", park.Address);
+                    DbUtils.AddParameter(cmd, "@websiteLink", park.WebsiteLink);
+                    DbUtils.AddParameter(cmd, "@Id", park.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
