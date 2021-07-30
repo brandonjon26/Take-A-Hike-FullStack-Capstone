@@ -54,5 +54,12 @@ namespace TakeAHike.Controllers
             _parksRepository.UpdatePark(park);
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _parksRepository.Delete(id);
+            return NoContent();
+        }
     }
 }
