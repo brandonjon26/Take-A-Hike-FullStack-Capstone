@@ -67,3 +67,15 @@ export const editPark = (park) => {
         })
     });
 }
+
+export const deletePark = (id) => {
+    return getToken().then((token) => {
+        return fetch(`${baseUrl}/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "Application/json"
+            }
+        })
+    });
+}
