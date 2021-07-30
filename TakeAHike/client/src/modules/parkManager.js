@@ -1,4 +1,5 @@
 import { getToken } from "./authManager";
+import "firebase/auth"
 
 const baseUrl = '/api/Park';
 
@@ -64,6 +65,18 @@ export const editPark = (park) => {
                 "Content-Type": "Application/json"
             },
             body: JSON.stringify(park)
+        })
+    });
+}
+
+export const deletePark = (id) => {
+    return getToken().then((token) => {
+        return fetch(`${baseUrl}/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "Application/json"
+            }
         })
     });
 }

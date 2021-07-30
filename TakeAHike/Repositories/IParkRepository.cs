@@ -10,5 +10,6 @@ namespace TakeAHike.Repositories
         public Park GetById(int id);
         public void UpdatePark(Park park);
         public void Delete(int id);
+        public void Activate(int id);
     }
 }

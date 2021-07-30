@@ -22,8 +22,9 @@ namespace TakeAHike.Repositories
                 {
                     cmd.CommandText = @"
                         SELECT id, parkName, description, contactInfo, 
-                               imageUrl, address, websiteLink
-                        From parks";
+                               imageUrl, address, websiteLink, isDeleted
+                        FROM parks 
+                        WHERE isDeleted = 0";
                     SqlDataReader reader = cmd.ExecuteReader();
                     List<Park> Parks = new List<Park>() { };
                     Park park = null;
@@ -37,7 +38,8 @@ namespace TakeAHike.Repositories
                             ContactInfo = DbUtils.GetString(reader, "contactInfo"),
                             ImageUrl = DbUtils.GetString(reader, "imageUrl"),
                             Address = DbUtils.GetString(reader, "address"),
-                            WebsiteLink = DbUtils.GetString(reader, "websiteLink")
+                            WebsiteLink = DbUtils.GetString(reader, "websiteLink"),
+                            isDeleted = DbUtils.GetBool(reader, "isDeleted")
                         };
                         Parks.Add(park);
                     }
@@ -81,7 +83,7 @@ namespace TakeAHike.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                SELECT parkName, description, contactInfo, imageURL, address, websiteLink
+                                SELECT id, parkName, description, contactInfo, imageURL, address, websiteLink, isDeleted
                                 FROM parks
                                 WHERE id = @id";
 
@@ -94,13 +96,14 @@ namespace TakeAHike.Repositories
                     {
                         park = new Park()
                         {
-                            Id = id,
+                            Id = DbUtils.GetInt(reader, "id"),
                             ParkName = DbUtils.GetString(reader, "parkName"),
                             Description = DbUtils.GetString(reader, "description"),
                             ContactInfo = DbUtils.GetString(reader, "contactInfo"),
-                            ImageUrl = DbUtils.GetString(reader, "imageURL"),
+                            ImageUrl = DbUtils.GetString(reader, "imageUrl"),
                             Address = DbUtils.GetString(reader, "address"),
                             WebsiteLink = DbUtils.GetString(reader, "websiteLink"),
+                            isDeleted = DbUtils.GetBool(reader, "isDeleted")
 
                         };
                     }
@@ -149,6 +152,23 @@ namespace TakeAHike.Repositories
                 {
                     cmd.CommandText = @"UPDATE parks
                                         SET isDeleted = 1
+                                        WHERE Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void Activate(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"UPDATE parks
+                                        SET isDeleted = 0
                                         WHERE Id = @id";
 
                     DbUtils.AddParameter(cmd, "@id", id);

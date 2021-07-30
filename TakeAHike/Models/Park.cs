@@ -14,5 +14,6 @@ namespace TakeAHike.Models
         public string ImageUrl { get; set; }
         public string Address { get; set; }
         public string WebsiteLink { get; set; }
+        public bool isDeleted { get; set; }
     }
 }

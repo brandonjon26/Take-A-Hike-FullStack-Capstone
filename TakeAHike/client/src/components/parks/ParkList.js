@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Parks } from "./Park";
-import { getAllParks } from "../../modules/parkManager";
+import { getAllParks, deletePark } from "../../modules/parkManager";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
