@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { addPark } from "../../modules/parkManager";
 
 export const AddParkForm = () => {
@@ -121,6 +121,11 @@ export const AddParkForm = () => {
                 onClick={handleClickSavePark}>
                 Save Park
             </button>
+            <Link to="/Park">
+                <button className="btn btn-primary">
+                    Back
+                </button>
+            </Link>
         </form>
     )
 }
