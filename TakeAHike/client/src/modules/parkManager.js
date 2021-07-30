@@ -1,4 +1,5 @@
 import { getToken } from "./authManager";
+import "firebase/auth"
 
 const baseUrl = '/api/Park';
 
@@ -69,6 +70,7 @@ export const editPark = (park) => {
 }
 
 export const deletePark = (id) => {
+    debugger
     return getToken().then((token) => {
         return fetch(`${baseUrl}/${id}`, {
             method: "DELETE",

@@ -12,13 +12,6 @@ export const ParkList = () => {
         getAllParks().then(setParks);
     }, []);
 
-    const handleDeletePark = (id) => {
-        window.confirm(`Are you sure you want to delete this park?`)
-        deletePark(id)
-            .then(() => getAllParks())
-        history.push("/Park")
-    }
-
     return (
         <>
             <div className="container">
@@ -30,7 +23,7 @@ export const ParkList = () => {
                         </button>
                     </Link>
                     {parks.map((p) => {
-                        return <Parks park={p} key={p.id} handleDeletePark={handleDeletePark} />
+                        return <Parks park={p} key={p.id} />
                     })}
                 </div>
             </div>

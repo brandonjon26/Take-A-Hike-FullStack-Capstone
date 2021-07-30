@@ -27,7 +27,13 @@ const _saveUser = (userProfile) => {
 
 
 
-export const getToken = () => firebase.auth().currentUser.getIdToken();
+export const getToken = () => {
+    const currentUser = firebase.auth().currentUser
+    if (!currentUser) {
+        throw new Error("Cannot get current user.")
+    }
+    return currentUser.getIdToken();
+}
 
 
 export const login = (email, pw) => {
