@@ -8,8 +8,12 @@ export const ParkList = () => {
     const history = useHistory();
     const [parks, setParks] = useState([]);
 
+    const getParks = () => {
+        getAllParks().then(parks => setParks(parks))
+    }
+
     useEffect(() => {
-        getAllParks().then(setParks);
+        getParks();
     }, []);
 
     return (
@@ -23,7 +27,7 @@ export const ParkList = () => {
                         </button>
                     </Link>
                     {parks.map((p) => {
-                        return <Parks park={p} key={p.id} />
+                        return <Parks park={p} key={p.id} getParks={getParks} />
                     })}
                 </div>
             </div>
