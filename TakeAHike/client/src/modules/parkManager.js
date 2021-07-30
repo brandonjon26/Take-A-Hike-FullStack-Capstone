@@ -64,12 +64,6 @@ export const editPark = (park) => {
                 "Content-Type": "Application/json"
             },
             body: JSON.stringify(park)
-        }).then(resp => {
-            if (resp.ok) {
-                return resp.json();
-            } else {
-                throw new Error("An unknown error occured while trying to save the edit.")
-            }
-        });
+        })
     });
 }
