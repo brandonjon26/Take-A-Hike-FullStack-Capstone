@@ -37,3 +37,39 @@ export const addPark = (park) => {
         });
     });
 };
+
+export const getParkById = (id) => {
+    return getToken().then((token) => {
+        return fetch(`${baseUrl}/${id}`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        }).then(resp => {
+            if (resp.ok) {
+                return resp.json();
+            } else {
+                throw new Error("An unknown error occured while trying to get the park by given id.");
+            }
+        });
+    });
+}
+
+export const editPark = (park) => {
+    return getToken().then((token) => {
+        return fetch(`${baseUrl}/${park.id}`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "Application/json"
+            },
+            body: JSON.stringify(park)
+        }).then(resp => {
+            if (resp.ok) {
+                return resp.json();
+            } else {
+                throw new Error("An unknown error occured while trying to save the edit.")
+            }
+        });
+    });
+}
