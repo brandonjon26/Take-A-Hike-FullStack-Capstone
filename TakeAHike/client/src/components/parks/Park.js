@@ -10,7 +10,6 @@ export const Parks = ({ park }) => {
     const handleDeletePark = (event) => {
         window.confirm(`Are you sure you want to delete this park?`)
         event.preventDefault()
-        debugger
         deletePark(park.id)
             .then(() => history.push("/Park/"))
     }
@@ -36,30 +35,3 @@ export const Parks = ({ park }) => {
         </Card >
     )
 }
-
-
-//     if (park.isDeleted === false) {
-//         return (
-//             <Card >
-//                 <CardBody >
-//                     <div>
-//                         <p>
-//                             <strong>{park.parkName}</strong>
-//                         </p>
-//                         <p>{park.contactInfo}</p>
-//                     </div>
-//                     <Link to={`/Park/edit/${park.id}`}>
-//                         <button className="btn btn-primary">
-//                             Edit
-//                         </button>
-//                         <button className="buttonRemovePark" type="button" onClick={() => handleDeletePark(park.id)}>
-//                             Delete Park
-//                         </button>
-//                     </Link>
-//                 </CardBody>
-//             </Card >
-//         );
-//     } else {
-//         return <> </>
-//     }
-// }
