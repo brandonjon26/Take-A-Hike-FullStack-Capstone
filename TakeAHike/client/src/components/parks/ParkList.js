@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Parks } from "./Park";
-import { getAllParks } from "../../modules/parkManager";
+import { getAllParks, deletePark } from "../../modules/parkManager";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
@@ -11,6 +11,13 @@ export const ParkList = () => {
     useEffect(() => {
         getAllParks().then(setParks);
     }, []);
+
+    const handleDeletePark = (id) => {
+        window.confirm(`Are you sure you want to delete this park?`)
+        deletePark(id)
+            .then(() => getAllParks())
+        history.push("/Park")
+    }
 
     return (
         <>
@@ -23,7 +30,7 @@ export const ParkList = () => {
                         </button>
                     </Link>
                     {parks.map((p) => {
-                        return <Parks park={p} key={p.id} />
+                        return <Parks park={p} key={p.id} handleDeletePark={handleDeletePark} />
                     })}
                 </div>
             </div>
