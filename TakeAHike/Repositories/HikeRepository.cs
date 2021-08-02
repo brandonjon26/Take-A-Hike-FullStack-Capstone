@@ -10,7 +10,7 @@ namespace TakeAHike.Repositories
 {
     public class HikeRepository : BaseRepository, IHikeRepository
     {
-        public HikeRepository(IConfiguration, configuration) : base(configuration) { }
+        public HikeRepository(IConfiguration configuration) : base(configuration) { }
         public List<Hike> GetAllHikes()
         {
             using (var conn = Connection)
