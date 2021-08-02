@@ -40,7 +40,7 @@ namespace TakeAHike.Repositories
                         {
                             Id = DbUtils.GetInt(reader, "id"),
                             UserId = DbUtils.GetInt(reader, "userId"),
-                            users = new Users()
+                            Users = new Users()
                             {
                                 Id = DbUtils.GetInt(reader, "Id"),
                                 FireBaseUserId = DbUtils.GetString(reader, "FireBaseUserId"),
@@ -50,7 +50,7 @@ namespace TakeAHike.Repositories
                                 userTypeId = DbUtils.GetInt(reader, "userTypeId"),
                             },
                             ParkId = DbUtils.GetInt(reader, "parkId"),
-                            park = new Park()
+                            Park = new Park()
                             {
                                 Id = DbUtils.GetInt(reader, "id"),
                                 ParkName = DbUtils.GetString(reader, "parkName"),
