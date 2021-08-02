@@ -7,6 +7,7 @@ import { ParkList } from "./parks/ParkList";
 import { AddParkForm } from "./parks/AddParkForm";
 import { EditPark } from "./parks/EditParkForm";
 import { ParkDetail } from "./parks/ParkDetails";
+import { HikeList } from "./hikes/HikeList";
 
 
 export default function ApplicationViews({ isLoggedIn }) {
@@ -39,6 +40,10 @@ export default function ApplicationViews({ isLoggedIn }) {
 
                 <Route exact path="/Park/details/:id">
                     <ParkDetail />
+                </Route>
+
+                <Route exact path="/Hike">
+                    <HikeList />
                 </Route>
             </Switch>
         </main>
