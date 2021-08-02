@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,8 @@ namespace TakeAHike.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT h.id, h.userId, h.parkId, h.dateOdHike,
-                               u.id AS hikeUserId, u.firstName, u.lastName, u.email, u.userTypeId,
+                        SELECT h.id, h.userId, h.parkId, h.dateOfHike,
+                               u.id AS hikeUserId, u.firstName, u.lastName, u.email, u.FirebaseUserId, u.userTypeId,
                                p.id AS parkUserId, p.parkName, p.description, p.contactInfo, p.imageURL, p.address, p.websiteLink, p.isDeleted AS parkIsDeleted
 
                         FROM myHikes h
@@ -31,9 +32,9 @@ namespace TakeAHike.Repositories
                         ORDER BY dateOfHike
                         ";
 
-                    var reader = cmd.ExecuteReader();
+                    SqlDataReader reader = cmd.ExecuteReader();
 
-                    var hikes = new List<Hike>();
+                    List<Hike> hikes = new List<Hike>();
                     while (reader.Read())
                     {
                         hikes.Add(new Hike()
@@ -59,7 +60,7 @@ namespace TakeAHike.Repositories
                                 ImageUrl = DbUtils.GetString(reader, "imageUrl"),
                                 Address = DbUtils.GetString(reader, "address"),
                                 WebsiteLink = DbUtils.GetString(reader, "websiteLink"),
-                                isDeleted = DbUtils.GetBool(reader, "isDeleted")
+                                isDeleted = DbUtils.GetBool(reader, "parkIsDeleted")
                             },
                             DateOfHike = DbUtils.GetDateTime(reader, "dateOfHike")
                         });
