@@ -29,6 +29,11 @@ export const Parks = ({ park, getParks }) => {
                         Edit
                     </button>
                 </Link>
+                <Link to={`/Park/details/${park.id}`}>
+                    <button className="btn btn-primary">
+                        Details
+                    </button>
+                </Link>
                 <button className="buttonRemovePark" type="button" onClick={handleDeletePark}>
                     Delete Park
                 </button>
