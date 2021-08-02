@@ -10,6 +10,6 @@ namespace TakeAHike.Models
         public int Id { get; set; }
         public int UserId { get; set; }
         public int ParkId { get; set; }
-        public DateTime DateOdHike { get; set; }
+        public DateTime DateOfHike { get; set; }
     }
 }
