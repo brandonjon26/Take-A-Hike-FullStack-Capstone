@@ -22,7 +22,7 @@ export const HikeList = () => {
                 <div className="row justify-content-center">
                     <h3>My Hikes!</h3>
                     {hikes.map((h) => {
-                        return <Hikes hike={h} key={h.id} getHikes={getHikes} />
+                        return <Hikes hike={h} key={h.id} />
                     })}
                 </div>
             </div>
