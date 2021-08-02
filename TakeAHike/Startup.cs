@@ -31,6 +31,7 @@ namespace TakeAHike
         {
             services.AddTransient<IParkRepository, ParkRepository>();
             services.AddTransient<IUsersRepository, UsersRepository>();
+            services.AddTransient<IHikeRepository, HikeRepository>();
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
