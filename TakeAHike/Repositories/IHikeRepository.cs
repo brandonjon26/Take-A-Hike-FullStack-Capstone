@@ -9,5 +9,6 @@ namespace TakeAHike.Repositories
     public interface IHikeRepository
     {
         List<Hike> GetAllHikes();
+        public void AddHike(Hike hike);
     }
 }

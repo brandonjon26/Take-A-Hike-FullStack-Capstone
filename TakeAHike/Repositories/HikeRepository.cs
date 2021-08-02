@@ -72,5 +72,28 @@ namespace TakeAHike.Repositories
                 }
             }
         }
+
+        public void AddHike(Hike hike)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO myHikes (userId, parkId, dateOfHike)
+                                        OUTPUT INSERTED.ID
+                                        VALUES (@userId, @parkId, @dateOfHike)
+                    ";
+
+                    DbUtils.AddParameter(cmd, "@userId", hike.UserId);
+                    DbUtils.AddParameter(cmd, "@parkId", hike.ParkId);
+                    DbUtils.AddParameter(cmd, "@dateOfHike", hike.DateOfHike);
+
+                    int id = (int)cmd.ExecuteScalar();
+
+                    hike.Id = id;
+                }
+            }
+        }
     }
 }
