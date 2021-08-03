@@ -95,5 +95,60 @@ namespace TakeAHike.Repositories
                 }
             }
         }
+
+        public Hike GetById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                SELECT id, parkId, userId, dateOfHike
+                                FROM myHikes
+                                WHERE id = @id";
+                    DbUtils.AddParameter(cmd, "@id", id);
+
+                    var reader = cmd.ExecuteReader();
+
+                    Hike hike = null;
+                    if (reader.Read())
+                    {
+                        hike = new Hike()
+                        {
+                            Id = DbUtils.GetInt(reader, "id"),
+                            ParkId = DbUtils.GetInt(reader, "parkId"),
+                            UserId = DbUtils.GetInt(reader, "userId"),
+                            DateOfHike = DbUtils.GetDateTime(reader, "dateOfHike")
+                        };
+                    }
+                    reader.Close();
+                    return hike;
+                }
+            }
+        }
+
+        public void UpdateHike(Hike hike)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                            UPDATE myHikes
+                                SET parkId = @parkId,
+                                    userId = @userId,
+                                    dateOfHike = @dateOfHike
+                            WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@parkId", hike.ParkId);
+                    DbUtils.AddParameter(cmd, "@userId", hike.UserId);
+                    DbUtils.AddParameter(cmd, "@dateOfHike", hike.DateOfHike);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

@@ -26,11 +26,33 @@ namespace TakeAHike.Controllers
             return Ok(_hikeRepository.GetAllHikes());
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetHikeById(int id)
+        {
+            var hike = _hikeRepository.GetById(id);
+            if (hike == null)
+            {
+                return NotFound();
+            }
+            return Ok(hike);
+        }
+
         [HttpPost]
         public IActionResult Post(Hike hike)
         {
             _hikeRepository.AddHike(hike);
                 return CreatedAtAction(nameof(GetAll), new { Id = hike.Id }, hike);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Hike hike)
+        {
+            if (id != hike.Id)
+            {
+                return BadRequest();
+            }
+            _hikeRepository.UpdateHike(hike);
+            return NoContent();
         }
     }
 }
