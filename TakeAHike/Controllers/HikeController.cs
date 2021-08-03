@@ -54,5 +54,19 @@ namespace TakeAHike.Controllers
             _hikeRepository.UpdateHike(hike);
             return NoContent();
         }
+
+        [HttpDelete("{id}")] 
+        public IActionResult Delete(int id)
+        {
+            _hikeRepository.Delete(id);
+            return NoContent();
+        }
+
+        [HttpPut("Activate/{id}")] 
+        public IActionResult Activate(int id)
+        {
+            _hikeRepository.Activate(id);
+            return NoContent();
+        }
     }
 }
