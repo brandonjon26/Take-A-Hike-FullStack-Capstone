@@ -20,7 +20,7 @@ namespace TakeAHike.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT h.id, h.userId, h.parkId, h.dateOfHike,
+                        SELECT h.id, h.userId, h.parkId, h.dateOfHike, h.isDeleted,
                                u.id AS hikeUserId, u.firstName, u.lastName, u.email, u.FirebaseUserId, u.userTypeId,
                                p.id AS parkUserId, p.parkName, p.description, p.contactInfo, p.imageURL, p.address, p.websiteLink, p.isDeleted AS parkIsDeleted
 
@@ -62,7 +62,8 @@ namespace TakeAHike.Repositories
                                 WebsiteLink = DbUtils.GetString(reader, "websiteLink"),
                                 isDeleted = DbUtils.GetBool(reader, "parkIsDeleted")
                             },
-                            DateOfHike = DbUtils.GetDateTime(reader, "dateOfHike")
+                            DateOfHike = DbUtils.GetDateTime(reader, "dateOfHike"),
+                            isDeleted = DbUtils.GetBool(reader, "isDeleted")
                         });
                     }
 

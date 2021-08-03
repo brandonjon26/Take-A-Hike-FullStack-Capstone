@@ -13,5 +13,6 @@ namespace TakeAHike.Models
         public DateTime DateOfHike { get; set; }
         public Users Users { get; set; }
         public Park Park { get; set; }
+        public bool isDeleted { get; set; }
     }
 }
