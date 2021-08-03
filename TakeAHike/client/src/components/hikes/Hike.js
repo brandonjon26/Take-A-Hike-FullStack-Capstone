@@ -44,8 +44,13 @@ export const Hikes = ({ hike, getHikes }) => {
                             Edit
                         </button>
                     </Link>
+                    <Link to={`/Hike/details/${hike.id}`}>
+                        <button className="btn btn-primary">
+                            Details
+                        </button>
+                    </Link>
                     <button className="buttonRemoveHike" type="button" onClick={handleDeleteHike}>
-                        Delete Park
+                        Delete Hike
                     </button>
                 </div>
             </CardBody>

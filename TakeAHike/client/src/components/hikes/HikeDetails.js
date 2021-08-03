@@ -1,45 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardBody } from "reactstrap";
 import { useHistory, useParams } from "react-router";
-import { getParkById } from "../../modules/parkManager";
+import { getHikeById } from "../../modules/hikeManager";
 import { Link } from "react-router-dom";
 
-export const ParkDetail = () => {
+export const HikeDetail = () => {
     const { id } = useParams();
-    const [park, setPark] = useState({});
-    const history = useHistory();
+    const [hike, setHike] = useState({});
 
-    const getParkDetails = () => {
-        getParkById(id)
-            .then(setPark)
+    const getHikeDetails = () => {
+        getHikeById(id)
+            .then(setHike)
     }
 
     useEffect(() => {
-        getParkDetails();
+        getHikeDetails();
     }, []);
 
     return (
         <Card>
             <CardBody>
                 <h3>
-                    <strong>Park Name: {park.parkName}</strong>
+                    <strong>Park Name: {hike.park?.parkName}</strong>
                 </h3>
                 <p>
-                    Description: {park.description}
+                    Description: {hike.park?.description}
                 </p>
                 <p>
-                    Contact Info: {park.contactInfo}
+                    Contact Info: {hike.park?.contactInfo}
                 </p>
                 <p>
-                    <img src={park.imageURL} alt="display image" />
+                    <img src={hike.park?.imageUrl} alt="display image" />
                 </p>
                 <p>
-                    Address: {park.address}
+                    Address: {hike.park?.address}
                 </p>
                 <p>
-                    Website: {park.websiteLink}
+                    Website: {hike.park?.websiteLink}
                 </p>
-                <Link to="/Park">
+                <p>
+                    Date: {hike.dateOfHike}
+                </p>
+                <Link to="/Hike">
                     <button className="btn btn-primary">
                         Back
                     </button>
