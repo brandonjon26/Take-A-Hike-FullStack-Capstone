@@ -57,3 +57,15 @@ export const editHike = (hike) => {
     });
 }
 
+export const deleteHike = (id) => {
+    return getToken().then((token) => {
+        return fetch(`${baseUrl}/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "Application/json"
+            }
+        })
+    });
+}
+

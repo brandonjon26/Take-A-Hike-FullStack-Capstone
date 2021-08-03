@@ -1,8 +1,9 @@
 import React from "react";
 import { Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
+import { deleteHike } from "../../modules/hikeManager";
 
-export const Hikes = ({ hike }) => {
+export const Hikes = ({ hike, getHikes }) => {
 
     const createTime1 = (hike.dateOfHike.split("T"))
     const time1 = (createTime1.pop())
@@ -17,6 +18,13 @@ export const Hikes = ({ hike }) => {
     const midnightCheck1 = (hour1 === "00" ? "12" : hour1)
     const nightNoon1 = (hour1 > 12 ? " PM" : " AM")
     const TimeStamp1 = day1 + "/" + month1 + "/" + year1 + " @ " + midnightCheck1 + ":" + minute1 + "" + nightNoon1;
+
+    const handleDeleteHike = (event) => {
+        window.confirm(`Are you sure you want to delete this park?`)
+        event.preventDefault()
+        deleteHike(hike.id)
+            .then(() => getHikes())
+    }
 
     return (
         <Card>
@@ -36,7 +44,7 @@ export const Hikes = ({ hike }) => {
                             Edit
                         </button>
                     </Link>
-                    <button className="buttonRemoveHike" type="button" onClick={handleDeletePark}>
+                    <button className="buttonRemoveHike" type="button" onClick={handleDeleteHike}>
                         Delete Park
                     </button>
                 </div>
