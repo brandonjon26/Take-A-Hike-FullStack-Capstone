@@ -28,7 +28,7 @@ namespace TakeAHike.Repositories
                         LEFT JOIN users u ON u.id = h.userId
                         JOIN parks p ON p.id = h.parkId
 
-                        WHERE p.isDeleted = 0
+                        WHERE h.isDeleted = 0
                         ORDER BY dateOfHike
                         ";
 

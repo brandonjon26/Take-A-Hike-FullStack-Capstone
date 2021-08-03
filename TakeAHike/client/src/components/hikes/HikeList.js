@@ -28,7 +28,7 @@ export const HikeList = () => {
                         </button>
                     </Link>
                     {hikes.map((h) => {
-                        return <Hikes hike={h} key={h.id} />
+                        return <Hikes hike={h} key={h.id} getHikes={getHikes} />
                     })}
                 </div>
             </div>
