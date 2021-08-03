@@ -31,6 +31,14 @@ export const Hikes = ({ hike }) => {
                     <p>
                         {TimeStamp1}
                     </p>
+                    <Link to={`/Hike/edit/${hike.id}`}>
+                        <button className="btn btn-primary">
+                            Edit
+                        </button>
+                    </Link>
+                    <button className="buttonRemoveHike" type="button" onClick={handleDeletePark}>
+                        Delete Park
+                    </button>
                 </div>
             </CardBody>
         </Card>
