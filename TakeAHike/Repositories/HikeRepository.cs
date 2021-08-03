@@ -143,6 +143,8 @@ namespace TakeAHike.Repositories
                                     dateOfHike = @dateOfHike
                             WHERE Id = @Id";
 
+                    cmd.Parameters.AddWithValue("@id", hike.Id);
+
                     DbUtils.AddParameter(cmd, "@parkId", hike.ParkId);
                     DbUtils.AddParameter(cmd, "@userId", hike.UserId);
                     DbUtils.AddParameter(cmd, "@dateOfHike", hike.DateOfHike);

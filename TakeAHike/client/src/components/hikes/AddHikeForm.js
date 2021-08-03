@@ -18,7 +18,7 @@ export const AddHikeForm = () => {
         if (event.target.id.includes("Id")) {
             selectedVal = parseInt(selectedVal)
         }
-        newHike[event.target.id] = parseInt(selectedVal)
+        newHike[event.target.id] = selectedVal
         setHike(newHike)
     }
 
