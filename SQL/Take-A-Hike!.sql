@@ -38,11 +38,12 @@ GO
 CREATE TABLE [parks] (
   [id] int PRIMARY KEY IDENTITY NOT NULL,
   [parkName] nvarchar(255) NOT NULL,
-  [description] nvarchar(500) NOT NULL,
+  [description] nvarchar(1500) NOT NULL,
   [contactInfo] nvarchar(255) NOT NULL,
   [imageURL] nvarchar(255),
   [address] nvarchar(255) NOT NULL,
-  [websiteLink] nvarchar(255) NOT NULL
+  [websiteLink] nvarchar(255) NOT NULL,
+  [isDeleted] BIT DEFAULT ((0)) NOT NULL,
 )
 GO
 
@@ -51,6 +52,7 @@ CREATE TABLE [myHikes] (
   [userId] int NOT NULL,
   [parkId] int NOT NULL,
   [dateOfHike] dateTime NOT NULL,
+  [isDeleted] BIT DEFAULT ((0)) NOT NULL,
 
   CONSTRAINT FK_myHikes_users FOREIGN KEY (userId) REFERENCES users(id),
   CONSTRAINT FK_myHikes_parks FOREIGN KEY (parkId) REFERENCES parks(id)

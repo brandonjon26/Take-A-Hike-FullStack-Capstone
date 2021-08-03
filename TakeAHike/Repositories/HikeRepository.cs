@@ -20,7 +20,7 @@ namespace TakeAHike.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT h.id, h.userId, h.parkId, h.dateOfHike,
+                        SELECT h.id, h.userId, h.parkId, h.dateOfHike, h.isDeleted,
                                u.id AS hikeUserId, u.firstName, u.lastName, u.email, u.FirebaseUserId, u.userTypeId,
                                p.id AS parkUserId, p.parkName, p.description, p.contactInfo, p.imageURL, p.address, p.websiteLink, p.isDeleted AS parkIsDeleted
 
@@ -62,7 +62,8 @@ namespace TakeAHike.Repositories
                                 WebsiteLink = DbUtils.GetString(reader, "websiteLink"),
                                 isDeleted = DbUtils.GetBool(reader, "parkIsDeleted")
                             },
-                            DateOfHike = DbUtils.GetDateTime(reader, "dateOfHike")
+                            DateOfHike = DbUtils.GetDateTime(reader, "dateOfHike"),
+                            isDeleted = DbUtils.GetBool(reader, "isDeleted")
                         });
                     }
 
@@ -146,6 +147,40 @@ namespace TakeAHike.Repositories
                     DbUtils.AddParameter(cmd, "@userId", hike.UserId);
                     DbUtils.AddParameter(cmd, "@dateOfHike", hike.DateOfHike);
 
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"UPDATE myHikes
+                                        SET isDeleted = 1
+                                        WHERE Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void Activate(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"UPDATE myHikes
+                                        SET isDeleted = 0
+                                        WHERE Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@id", id);
                     cmd.ExecuteNonQuery();
                 }
             }
