@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Hikes } from "./Hike";
 import { getAllHikes } from "../../modules/hikeManager";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 
 export const HikeList = () => {
