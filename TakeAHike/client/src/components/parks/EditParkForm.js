@@ -113,7 +113,7 @@ export const EditPark = () => {
             </fieldset>
             <Button className="article-btn"
                 onClick={handleSaveEvent}>
-                Save Category
+                Save Park
             </Button>
             <Button className="article-btn"
                 onClick={handleCancelSave}>
