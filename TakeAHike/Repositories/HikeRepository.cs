@@ -127,5 +127,28 @@ namespace TakeAHike.Repositories
                 }
             }
         }
+
+        public void UpdateHike(Hike hike)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                            UPDATE myHikes
+                                SET parkId = @parkId,
+                                    userId = @userId,
+                                    dateOfHike = @dateOfHike
+                            WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@parkId", hike.ParkId);
+                    DbUtils.AddParameter(cmd, "@userId", hike.UserId);
+                    DbUtils.AddParameter(cmd, "@dateOfHike", hike.DateOfHike);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
