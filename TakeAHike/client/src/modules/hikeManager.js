@@ -44,7 +44,7 @@ export const getHikeById = (id) => {
     });
 }
 
-export const editPark = (hike) => {
+export const editHike = (hike) => {
     return getToken().then((token) => {
         return fetch(`${baseUrl}/${hike.id}`, {
             method: "PUT",
