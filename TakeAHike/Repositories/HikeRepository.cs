@@ -95,5 +95,37 @@ namespace TakeAHike.Repositories
                 }
             }
         }
+
+        public Hike GetById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                SELECT id, parkId, userId, dateOfHike
+                                FROM myHikes
+                                WHERE id = @id";
+                    DbUtils.AddParameter(cmd, "@id", id);
+
+                    var reader = cmd.ExecuteReader();
+
+                    Hike hike = null;
+                    if (reader.Read())
+                    {
+                        hike = new Hike()
+                        {
+                            Id = DbUtils.GetInt(reader, "id"),
+                            ParkId = DbUtils.GetInt(reader, "parkId"),
+                            UserId = DbUtils.GetInt(reader, "userId"),
+                            DateOfHike = DbUtils.GetDateTime(reader, "dateOdHike")
+                        };
+                    }
+                    reader.Close();
+                    return hike;
+                }
+            }
+        }
     }
 }
