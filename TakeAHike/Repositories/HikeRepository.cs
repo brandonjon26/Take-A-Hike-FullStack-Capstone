@@ -119,7 +119,7 @@ namespace TakeAHike.Repositories
                             Id = DbUtils.GetInt(reader, "id"),
                             ParkId = DbUtils.GetInt(reader, "parkId"),
                             UserId = DbUtils.GetInt(reader, "userId"),
-                            DateOfHike = DbUtils.GetDateTime(reader, "dateOdHike")
+                            DateOfHike = DbUtils.GetDateTime(reader, "dateOfHike")
                         };
                     }
                     reader.Close();
