@@ -4,7 +4,7 @@ import { editHike, getHikeById } from "../../modules/hikeManager";
 import { Form, FormGroup, Button, Container } from "reactstrap";
 import { getAllParks } from "../../modules/parkManager";
 
-export const EditPark = () => {
+export const EditHike = () => {
     const [parks, setParks] = useState([])
     const [hike, setHike] = useState({})
     const { id } = useParams();
@@ -75,7 +75,7 @@ export const EditPark = () => {
             </fieldset>
             <Button className="article-btn"
                 onClick={handleSaveEvent}>
-                Save Category
+                Save Hike
             </Button>
             <Button className="article-btn"
                 onClick={handleCancelSave}>
