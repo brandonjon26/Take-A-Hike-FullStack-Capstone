@@ -21,7 +21,7 @@ namespace TakeAHike.Repositories
                 {
                     cmd.CommandText = @"
                         SELECT h.id, h.userId, h.parkId, h.dateOfHike, h.isDeleted,
-                               u.id AS hikeUserId, u.firstName, u.lastName, u.email, u.FirebaseUserId, u.userTypeId,
+                               u.id AS hikeUserId, u.name, u.email, u.FirebaseUserId, u.userTypeId,
                                p.id AS parkUserId, p.parkName, p.description, p.contactInfo, p.imageURL, p.address, p.websiteLink, p.isDeleted AS parkIsDeleted
 
                         FROM myHikes h
@@ -45,8 +45,7 @@ namespace TakeAHike.Repositories
                             {
                                 Id = DbUtils.GetInt(reader, "Id"),
                                 FireBaseUserId = DbUtils.GetString(reader, "FireBaseUserId"),
-                                firstName = DbUtils.GetString(reader, "firstName"),
-                                lastName = DbUtils.GetString(reader, "lastName"),
+                                name = DbUtils.GetString(reader, "name"),
                                 email = DbUtils.GetString(reader, "email"),
                                 userTypeId = DbUtils.GetInt(reader, "userTypeId"),
                             },

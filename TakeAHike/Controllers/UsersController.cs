@@ -20,7 +20,7 @@ namespace TakeAHike.Controllers
         }
 
         [HttpGet("{firebaseUserId}")]
-        public IActionResult GetUser(string firebaseUserId)
+        public IActionResult GetByFirebaseUserId(string firebaseUserId)
         {
             return Ok(_usersRepository.GetByFirebaseUserId(firebaseUserId));
         }
@@ -39,9 +39,11 @@ namespace TakeAHike.Controllers
         [HttpPost]
         public IActionResult Post(Users users)
         {
-            users.userTypeId = userType.USER_ID;
+            users.userTypeId = 2;
             _usersRepository.Add(users);
-            return CreatedAtAction("Get", new { id = users.Id }, users);
+            return CreatedAtAction(
+                nameof(GetByFirebaseUserId), new { firebaseUserId = users.FireBaseUserId }, users);
+            //return CreatedAtAction("Get", new { id = users.Id }, users);
             //nameof(GetUser),
             //new { firebaseUserId = users.FireBaseUserId },
             //users);

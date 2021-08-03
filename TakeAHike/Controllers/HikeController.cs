@@ -11,7 +11,7 @@ using TakeAHike.Repositories;
 
 namespace TakeAHike.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class HikeController : ControllerBase
