@@ -21,6 +21,11 @@ export const HikeList = () => {
             <div className="container">
                 <div className="row justify-content-center">
                     <h3>My Hikes!</h3>
+                    <Link to="/Hike/add">
+                        <button className="btn btn-primary">
+                            Take A Hike!
+                        </button>
+                    </Link>
                     {hikes.map((h) => {
                         return <Hikes hike={h} key={h.id} />
                     })}
