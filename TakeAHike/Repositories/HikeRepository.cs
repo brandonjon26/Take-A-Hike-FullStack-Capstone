@@ -105,9 +105,13 @@ namespace TakeAHike.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                SELECT id, parkId, userId, dateOfHike
-                                FROM myHikes
-                                WHERE id = @id";
+                                SELECT h.id, h.userId, h.parkId, h.dateOfHike, h.isDeleted,
+                                       p.id AS parkUserId, p.parkName, p.description, p.contactInfo, p.imageURL, p.address, p.websiteLink, p.isDeleted AS parkIsDeleted
+                                FROM myHikes h
+
+                                LEFT JOIN parks p ON p.id = h.parkId
+
+                                WHERE h.id = @id";
                     DbUtils.AddParameter(cmd, "@id", id);
 
                     var reader = cmd.ExecuteReader();
@@ -119,8 +123,20 @@ namespace TakeAHike.Repositories
                         {
                             Id = DbUtils.GetInt(reader, "id"),
                             ParkId = DbUtils.GetInt(reader, "parkId"),
+                            Park = new Park()
+                            {
+                                Id = DbUtils.GetInt(reader, "id"),
+                                ParkName = DbUtils.GetString(reader, "parkName"),
+                                Description = DbUtils.GetString(reader, "description"),
+                                ContactInfo = DbUtils.GetString(reader, "contactInfo"),
+                                ImageUrl = DbUtils.GetString(reader, "imageUrl"),
+                                Address = DbUtils.GetString(reader, "address"),
+                                WebsiteLink = DbUtils.GetString(reader, "websiteLink"),
+                                isDeleted = DbUtils.GetBool(reader, "parkIsDeleted")
+                            },
                             UserId = DbUtils.GetInt(reader, "userId"),
-                            DateOfHike = DbUtils.GetDateTime(reader, "dateOfHike")
+                            DateOfHike = DbUtils.GetDateTime(reader, "dateOfHike"),
+                            isDeleted = DbUtils.GetBool(reader, "isDeleted")
                         };
                     }
                     reader.Close();
