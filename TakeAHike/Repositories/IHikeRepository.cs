@@ -10,5 +10,7 @@ namespace TakeAHike.Repositories
     {
         List<Hike> GetAllHikes();
         public void AddHike(Hike hike);
+        public Hike GetById(int id);
+        public void UpdateHike(Hike hike);
     }
 }
