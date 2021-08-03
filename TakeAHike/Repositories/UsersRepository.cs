@@ -16,7 +16,7 @@ namespace TakeAHike.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT u.Id, u.FireBaseUserId, u.firstName, u.lastName, 
+                        SELECT u.Id, u.FireBaseUserId, u.name, 
                                u.email, u.userTypeId,
                                ut.name AS UserTypeName
                           FROM users u
@@ -34,8 +34,7 @@ namespace TakeAHike.Repositories
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
                             FireBaseUserId = DbUtils.GetString(reader, "FireBaseUserId"),
-                            firstName = DbUtils.GetString(reader, "firstName"),
-                            lastName = DbUtils.GetString(reader, "lastName"),
+                            name = DbUtils.GetString(reader, "name"),
                             email = DbUtils.GetString(reader, "email"),
                             userTypeId = DbUtils.GetInt(reader, "userTypeId"),
                             userType = new userType()
@@ -59,14 +58,13 @@ namespace TakeAHike.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO UserProfile (FireBaseUserId, firstName, lastName, 
+                    cmd.CommandText = @"INSERT INTO users (FireBaseUserId, name, 
                                                                  email, userTypeId)
                                         OUTPUT INSERTED.ID
-                                        VALUES (@FireBaseUserId, @firstName, @lastName, 
+                                        VALUES (@FireBaseUserId, @name, 
                                                 @email, @userTypeId)";
                     DbUtils.AddParameter(cmd, "@FireBaseUserId", users.FireBaseUserId);
-                    DbUtils.AddParameter(cmd, "@firstName", users.firstName);
-                    DbUtils.AddParameter(cmd, "@lastName", users.lastName);
+                    DbUtils.AddParameter(cmd, "@name", users.name);
                     DbUtils.AddParameter(cmd, "@email", users.email);
                     DbUtils.AddParameter(cmd, "@userTypeId", users.userTypeId);
 
