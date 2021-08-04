@@ -30,7 +30,7 @@ export const HikeDetail = () => {
                     Contact Info: {hike.park?.contactInfo}
                 </p>
                 <p>
-                    <img src={hike.park?.imageUrl} alt="display image" />
+                    <img src={hike.park?.imageURL} alt="display image" />
                 </p>
                 <p>
                     Address: {hike.park?.address}
