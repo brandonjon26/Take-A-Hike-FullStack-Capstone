@@ -75,8 +75,12 @@ export const onLoginStatusChange = (onLoginStatusChangeHandler) => {
     });
 };
 
-// export const getUserType = () => {
-//     return getToken().then((token) => {
-//         return fetch(baseUrl)
-//     })
-// }
+export const getUserType = () => {
+    return getToken().then((token) =>
+        fetch(`${_apiUrl}/GetCurrentUser`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(resp => resp.json()));
+}

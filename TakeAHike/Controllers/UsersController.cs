@@ -63,7 +63,12 @@ namespace TakeAHike.Controllers
             return id;
         }
 
-        [HttpGet("{GetCurrentUser}")]
+        [HttpGet("GetCurrentUser")]
+        public IActionResult GetCurrentLoggedInUser()
+        {
+            var user = GetCurrentUserProfile();
+            return Ok(user);
+        }
         private Users GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;

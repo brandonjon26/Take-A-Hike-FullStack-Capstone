@@ -5,17 +5,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 export default function Hello() {
-    // const [users, setUsers] = useState({});
-    // const [isLoading, setIsLoading] = useState(true);
-    // const { userId } = useParams();
-
-    // useEffect(() => {
-    //     getToken(userId)
-    //         .then(users => {
-    //             setUsers(users);
-    //             setIsLoading(false);
-    //         });
-    // }, [userId])
     return (
         <div className="header">
             <h1>Take A Hike!</h1>
@@ -27,17 +16,7 @@ export default function Hello() {
                 the website? Simple, just go add it via our "Our Parks" tab! We hope that you find our website simple
                 and straight to the point. Now, quite reading and Take A Hike!
             </p>
-
-            {/* {users.id && < HikeList userId={users.id} />} */}
             <HikeList />
         </div>
-        // <span style={{
-        //     position: "fixed",
-        //     left: 0,
-        //     right: 0,
-        //     top: "50%",
-        //     marginTop: "-0.5rem",
-        //     textAlign: "center",
-        // }}>hello</span>
     );
 }

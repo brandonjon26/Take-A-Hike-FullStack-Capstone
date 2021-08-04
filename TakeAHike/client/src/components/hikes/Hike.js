@@ -31,7 +31,7 @@ export const Hikes = ({ hike, getHikes }) => {
             <CardBody>
                 <div>
                     <p>
-                        <img src={hike.park.imageURL} alt="display image" />
+                        <img src={hike.park.imageUrl} alt="display image" />
                     </p>
                     <p>
                         <strong>{hike.park.parkName}</strong>

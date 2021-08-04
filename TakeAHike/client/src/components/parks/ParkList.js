@@ -3,10 +3,12 @@ import { Parks } from "./Park";
 import { getAllParks, deletePark } from "../../modules/parkManager";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import { getUserType } from "../../modules/authManager";
 
 export const ParkList = () => {
     const history = useHistory();
     const [parks, setParks] = useState([]);
+    const [userType, setUserType] = useState();
 
     const getParks = () => {
         getAllParks().then(parks => setParks(parks))
@@ -14,6 +16,14 @@ export const ParkList = () => {
 
     useEffect(() => {
         getParks();
+    }, []);
+
+    useEffect(() => {
+        getUserType()
+            .then((resp) => {
+                setUserType(resp.userTypeId)
+                console.log(resp)
+            })
     }, []);
 
     return (
@@ -27,7 +37,7 @@ export const ParkList = () => {
                         </button>
                     </Link>
                     {parks.map((p) => {
-                        return <Parks park={p} key={p.id} getParks={getParks} />
+                        return <Parks park={p} key={p.id} getParks={getParks} userType={userType} />
                     })}
                 </div>
             </div>
