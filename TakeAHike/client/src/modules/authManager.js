@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 
+
 const _apiUrl = "/api/Users";
 
 const _doesUserExist = (firebaseUserId) => {
@@ -73,3 +74,9 @@ export const onLoginStatusChange = (onLoginStatusChangeHandler) => {
         onLoginStatusChangeHandler(!!user);
     });
 };
+
+// export const getUserType = () => {
+//     return getToken().then((token) => {
+//         return fetch(baseUrl)
+//     })
+// }
