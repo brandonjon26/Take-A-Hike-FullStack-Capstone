@@ -18,9 +18,14 @@ export const ParkDetail = () => {
         getParkDetails();
     }, []);
 
+    console.log(park.imageUrl);
+
     return (
         <Card>
             <CardBody>
+                <p>
+                    <img src={park.imageUrl} alt="display image" />
+                </p>
                 <h3>
                     <strong>Park Name: {park.parkName}</strong>
                 </h3>
@@ -31,13 +36,12 @@ export const ParkDetail = () => {
                     Contact Info: {park.contactInfo}
                 </p>
                 <p>
-                    <img src={park.imageURL} alt="display image" />
-                </p>
-                <p>
                     Address: {park.address}
                 </p>
                 <p>
-                    Website: {park.websiteLink}
+                    <a href={park.websiteLink}>
+                        Website: {park.websiteLink}
+                    </a>
                 </p>
                 <Link to="/Park">
                     <button className="btn btn-primary">

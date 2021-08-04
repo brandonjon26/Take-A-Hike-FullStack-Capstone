@@ -33,10 +33,7 @@ export const AddHikeForm = () => {
         event.preventDefault()
 
         addHike(hike)
-            .then(() => setHike({
-                parkId: 0,
-                dateOfHike: ""
-            })).then((h) => {
+            .then((h) => {
                 history.push("/Hike");
             })
     }
