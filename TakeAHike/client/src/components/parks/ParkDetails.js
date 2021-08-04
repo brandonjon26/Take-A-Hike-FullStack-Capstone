@@ -18,8 +18,6 @@ export const ParkDetail = () => {
         getParkDetails();
     }, []);
 
-    console.log(park.imageUrl);
-
     return (
         <Card>
             <CardBody>
