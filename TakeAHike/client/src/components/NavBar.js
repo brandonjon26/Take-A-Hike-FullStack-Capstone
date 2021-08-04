@@ -28,11 +28,13 @@ export default function NavBar({ isLoggedIn }) {
                                 <NavLink tag={RRNavLink} to="/">Home</NavLink>
                             </NavItem>
                         }
-                        {<>
-                            <NavItem>
-                                <NavLink tag={RRNavLink} to="/Park">Our Parks </NavLink>
-                            </NavItem>
-                        </>}
+                        {isLoggedIn &&
+                            <>
+                                <NavItem>
+                                    <NavLink tag={RRNavLink} to="/Park">Our Parks </NavLink>
+                                </NavItem>
+                            </>
+                        }
                     </Nav>
 
 
