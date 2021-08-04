@@ -10,7 +10,6 @@ import { ParkDetail } from "./parks/ParkDetails";
 import { HikeList } from "./hikes/HikeList";
 import { AddHikeForm } from "./hikes/AddHikeForm";
 import { EditHike } from "./hikes/EditHikeForm";
-import { HikeDetail } from "./hikes/HikeDetails";
 
 
 export default function ApplicationViews({ isLoggedIn }) {
@@ -55,10 +54,6 @@ export default function ApplicationViews({ isLoggedIn }) {
 
                 <Route exact path="/Hike/edit/:id">
                     <EditHike />
-                </Route>
-
-                <Route exact path="/Hike/details/:id">
-                    <HikeDetail />
                 </Route>
             </Switch>
         </main>
