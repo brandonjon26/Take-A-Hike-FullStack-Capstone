@@ -16,7 +16,7 @@ export const getAllHikes = () => {
 
 export const addHike = (hike) => {
     return getToken().then((token) => {
-        fetch(baseUrl, {
+        return fetch(baseUrl, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`,

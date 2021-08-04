@@ -34,7 +34,7 @@ export const AddHikeForm = () => {
 
         addHike(hike)
             .then((h) => {
-                history.push("/Hike");
+                history.push("/");
             })
     }
 
@@ -72,7 +72,7 @@ export const AddHikeForm = () => {
                 onClick={handleClickSaveHike}>
                 Save Hike
             </button>
-            <Link to="/Hike">
+            <Link to="/">
                 <button className="btn btn-primary">
                     Back
                 </button>
