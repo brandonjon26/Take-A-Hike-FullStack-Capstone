@@ -1,7 +1,21 @@
 import React from "react";
 import { HikeList } from "./hikes/HikeList";
+import { getToken } from "../modules/authManager";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 export default function Hello() {
+    // const [users, setUsers] = useState({});
+    // const [isLoading, setIsLoading] = useState(true);
+    // const { userId } = useParams();
+
+    // useEffect(() => {
+    //     getToken(userId)
+    //         .then(users => {
+    //             setUsers(users);
+    //             setIsLoading(false);
+    //         });
+    // }, [userId])
     return (
         <div className="header">
             <h1>Take A Hike!</h1>
@@ -14,6 +28,7 @@ export default function Hello() {
                 and straight to the point. Now, quite reading and Take A Hike!
             </p>
 
+            {/* {users.id && < HikeList userId={users.id} />} */}
             <HikeList />
         </div>
         // <span style={{

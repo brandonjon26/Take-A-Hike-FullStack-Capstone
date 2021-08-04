@@ -25,10 +25,32 @@ namespace TakeAHike.Controllers
             _usersRepository = usersRepository;
         }
 
+        private int GetCurrentUserProfileId()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var users = _usersRepository.GetByFirebaseUserId(firebaseUserId);
+            return users.Id;
+        }
+
+        private string GetCurrentFirebaseUserProfileId()
+        {
+            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return id;
+        }
+
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok(_hikeRepository.GetAllHikes());
+            var user = GetCurrentUserProfile();
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+            else
+            {
+                var hikes = _hikeRepository.GetAllHikes(user.Id);
+                return Ok(hikes);
+            }
         }
 
         [HttpGet("{id}")]
@@ -48,7 +70,7 @@ namespace TakeAHike.Controllers
             var users = GetCurrentUserProfile();
             hike.UserId = users.Id;
             _hikeRepository.AddHike(hike);
-                return CreatedAtAction(nameof(GetAll), new { Id = hike.Id }, hike);
+            return CreatedAtAction(nameof(GetAll), new { Id = hike.Id }, hike);
         }
 
         [HttpPut("{id}")]
@@ -62,14 +84,14 @@ namespace TakeAHike.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")] 
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             _hikeRepository.Delete(id);
             return NoContent();
         }
 
-        [HttpPut("Activate/{id}")] 
+        [HttpPut("Activate/{id}")]
         public IActionResult Activate(int id)
         {
             _hikeRepository.Activate(id);

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using TakeAHike.Models;
 using TakeAHike.Repositories;
@@ -47,6 +48,26 @@ namespace TakeAHike.Controllers
             //nameof(GetUser),
             //new { firebaseUserId = users.FireBaseUserId },
             //users);
+        }
+
+        private int GetCurrentUserProfileId()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var users= _usersRepository.GetByFirebaseUserId(firebaseUserId);
+            return users.Id;
+        }
+
+        private string GetCurrentFirebaseUserProfileId()
+        {
+            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return id;
+        }
+
+        [HttpGet("{GetCurrentUser}")]
+        private Users GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _usersRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }

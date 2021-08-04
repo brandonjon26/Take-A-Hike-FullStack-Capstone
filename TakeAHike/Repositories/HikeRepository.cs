@@ -12,7 +12,7 @@ namespace TakeAHike.Repositories
     public class HikeRepository : BaseRepository, IHikeRepository
     {
         public HikeRepository(IConfiguration configuration) : base(configuration) { }
-        public List<Hike> GetAllHikes()
+        public List<Hike> GetAllHikes(int id)
         {
             using (var conn = Connection)
             {
@@ -28,10 +28,11 @@ namespace TakeAHike.Repositories
                         LEFT JOIN users u ON u.id = h.userId
                         JOIN parks p ON p.id = h.parkId
 
-                        WHERE h.isDeleted = 0
+                        WHERE h.isDeleted = 0 AND u.id = @id
                         ORDER BY dateOfHike
                         ";
 
+                    DbUtils.AddParameter(cmd, "@id", id);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     List<Hike> hikes = new List<Hike>();
