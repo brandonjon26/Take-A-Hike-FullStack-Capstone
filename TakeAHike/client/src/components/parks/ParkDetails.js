@@ -3,6 +3,7 @@ import { Card, CardBody } from "reactstrap";
 import { useHistory, useParams } from "react-router";
 import { getParkById } from "../../modules/parkManager";
 import { Link } from "react-router-dom";
+import "./ParkDetail.css"
 
 export const ParkDetail = () => {
     const { id } = useParams();

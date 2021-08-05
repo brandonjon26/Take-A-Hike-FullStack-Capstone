@@ -3,6 +3,7 @@ import { Card, CardBody } from "reactstrap";
 import { useHistory, useParams } from "react-router";
 import { getHikeById } from "../../modules/hikeManager";
 import { Link } from "react-router-dom";
+import "./HikeDetail.css"
 
 export const HikeDetail = () => {
     const { id } = useParams();
