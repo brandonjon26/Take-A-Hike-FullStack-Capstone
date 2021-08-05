@@ -37,7 +37,9 @@ export const HikeDetail = () => {
                     Address: {hike.park?.address}
                 </p>
                 <p>
-                    Website: {hike.park?.websiteLink}
+                    <a href={hike.park?.websiteLink}>
+                        Website: {hike.park?.websiteLink}
+                    </a>
                 </p>
                 <p>
                     Date: {hike.dateOfHike}
