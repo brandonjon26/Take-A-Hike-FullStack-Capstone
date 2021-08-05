@@ -22,9 +22,11 @@ export const ParkDetail = () => {
     return (
         <Card>
             <CardBody>
-                <p>
-                    <img src={park.imageUrl} alt="display image" />
-                </p>
+                <div className="imageSize">
+                    <p>
+                        <img src={park.imageUrl} alt="display image" />
+                    </p>
+                </div>
                 <h3>
                     <strong>Park Name: {park.parkName}</strong>
                 </h3>
