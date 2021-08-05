@@ -3,6 +3,7 @@ import { Hikes } from "./Hike";
 import { getAllHikes } from "../../modules/hikeManager";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import "./HikeList.css"
 
 
 export const HikeList = () => {
@@ -20,16 +21,18 @@ export const HikeList = () => {
     return (
         <>
             <div className="container">
-                <div className="row justify-content-center">
+                <div className="list">
                     <h3>My Hikes!</h3>
                     <Link to="/Hike/add">
                         <button className="btn btn-primary">
                             Take A Hike!
                         </button>
                     </Link>
-                    {hikes.map((h) => {
-                        return <Hikes hike={h} key={h.id} getHikes={getHikes} />
-                    })}
+                    <div className="listComponent">
+                        {hikes.map((h) => {
+                            return <Hikes hike={h} key={h.id} getHikes={getHikes} />
+                        })}
+                    </div>
                 </div>
             </div>
         </>

@@ -21,6 +21,9 @@ export const HikeDetail = () => {
     return (
         <Card>
             <CardBody>
+                <p>
+                    <img src={hike.park?.imageUrl} alt="display image" />
+                </p>
                 <h3>
                     <strong>Park Name: {hike.park?.parkName}</strong>
                 </h3>
@@ -29,9 +32,6 @@ export const HikeDetail = () => {
                 </p>
                 <p>
                     Contact Info: {hike.park?.contactInfo}
-                </p>
-                <p>
-                    <img src={hike.park?.imageUrl} alt="display image" />
                 </p>
                 <p>
                     Address: {hike.park?.address}
