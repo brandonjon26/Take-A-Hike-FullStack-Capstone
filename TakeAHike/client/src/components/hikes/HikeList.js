@@ -3,6 +3,7 @@ import { Hikes } from "./Hike";
 import { getAllHikes } from "../../modules/hikeManager";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import "./HikeList.css"
 
 
 export const HikeList = () => {
