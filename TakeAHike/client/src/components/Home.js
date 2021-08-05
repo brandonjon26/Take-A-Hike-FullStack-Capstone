@@ -3,11 +3,14 @@ import { HikeList } from "./hikes/HikeList";
 import { getToken } from "../modules/authManager";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import "./Home.css";
 
 export default function Hello() {
     return (
         <div className="header">
-            <h1>Take A Hike!</h1>
+            <div className="appTitle">
+                <h1>Take A Hike!</h1>
+            </div>
 
             <p>
                 At "Take A Hike!", we aim to give users a great experience and easy way to view parks/trails in their
@@ -16,7 +19,9 @@ export default function Hello() {
                 park that is not on the website? Simple, just go add it via our "Our Parks" tab! We hope that you
                 find our website simple and straight to the point. Now, quit reading and Take A Hike!
             </p>
-            <HikeList />
+            <div className="homeList">
+                <HikeList />
+            </div>
         </div>
     );
 }

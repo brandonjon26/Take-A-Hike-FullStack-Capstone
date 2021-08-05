@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: auto;
+    padding-top: 1em;
+    padding-left: 3em;
+    padding-right: 3em;
+    padding-bottom: 1em;
+}
+
+.appTitle {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1em;
+}
+
+.homeList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
