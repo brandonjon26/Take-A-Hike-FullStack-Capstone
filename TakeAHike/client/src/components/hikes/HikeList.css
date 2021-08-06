@@ -12,7 +12,93 @@
 
 .listComponent {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    
+    flex-wrap: wrap;
+    justify-content: space-between ;
+    flex-direction: row ;
+    width: 1100px;
+}
+
+.CardImage{
+    width:300px
+}
+
+.card{
+    margin: 10px;
+    box-shadow: 2px 3px rgb(235, 235, 235);
+}
+
+.buttonRemoveHike {
+    padding: 8px;
+    margin:2px;
+    border: none;
+    border-radius: 5px;
+    background-color: orange;
+    color: black;
+    margin: 2px;
+    box-shadow: 2px 3px lightgray;
+    transition: .3s;
+}
+
+.buttonRemoveHike:hover {
+    padding: 8px;
+    padding-right: 10px;
+    padding-left:10px;
+    box-shadow: 1px 2px lightgray;
+    border: none;
+    border-radius: 5px;
+    background-color: darkorange;
+    color: black;
+    margin: 2px;
+    transition: .2s;
+}
+
+.buttonHikeDetails {
+    padding: 8px;
+    margin:2px;
+    border: none;
+    border-radius: 5px;
+    background-color: orange;
+    color: black;
+    margin: 2px;
+    box-shadow: 2px 3px lightgray;
+    transition: .3s;
+}
+
+.buttonHikeDetails:hover {
+    padding: 8px;
+    padding-right: 10px;
+    padding-left:10px;
+    box-shadow: 1px 2px lightgray;
+    border: none;
+    border-radius: 5px;
+    background-color: darkorange;
+    color: black;
+    margin: 2px;
+    transition: .2s;
+}
+
+.buttonEditHike {
+    padding: 8px;
+    margin:2px;
+    border: none;
+    border-radius: 5px;
+    background-color: orange;
+    color: black;
+    margin: 2px;
+    box-shadow: 2px 3px lightgray;
+    transition: .3s;
+
+}
+
+.buttonEditHike:hover {
+    padding: 8px;
+    padding-right: 10px;
+    padding-left:10px;
+    box-shadow: 1px 2px lightgray;
+    border: none;
+    border-radius: 5px;
+    background-color: darkorange;
+    color: black;
+    margin: 2px;
+    transition: .2s;
 }

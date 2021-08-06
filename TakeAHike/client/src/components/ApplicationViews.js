@@ -45,10 +45,6 @@ export default function ApplicationViews({ isLoggedIn }) {
                     <ParkDetail />
                 </Route>
 
-                <Route exact path="/Hike">
-                    <HikeList />
-                </Route>
-
                 <Route exact path="/Hike/add">
                     <AddHikeForm />
                 </Route>

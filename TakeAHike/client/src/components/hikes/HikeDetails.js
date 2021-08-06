@@ -21,9 +21,11 @@ export const HikeDetail = () => {
     return (
         <Card>
             <CardBody>
-                <p>
-                    <img src={hike.park?.imageUrl} alt="display image" />
-                </p>
+                <div>
+                    <p>
+                        <img src={hike.park?.imageUrl} alt="display image" className="imageDetail" />
+                    </p>
+                </div>
                 <h3>
                     <strong>Park Name: {hike.park?.parkName}</strong>
                 </h3>
@@ -44,7 +46,7 @@ export const HikeDetail = () => {
                 <p>
                     Date: {hike.dateOfHike}
                 </p>
-                <Link to="/Hike">
+                <Link to="/">
                     <button className="btn btn-primary">
                         Back
                     </button>
