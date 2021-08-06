@@ -31,7 +31,7 @@ export const Hikes = ({ hike, getHikes }) => {
             <CardBody>
                 <div>
                     <p>
-                        <img src={hike.park.imageUrl} alt="display image" />
+                        <img src={hike.park.imageUrl} className="CardImage" alt="display image" />
                     </p>
                     <p>
                         <strong>{hike.park.parkName}</strong>
@@ -40,12 +40,12 @@ export const Hikes = ({ hike, getHikes }) => {
                         {TimeStamp1}
                     </p>
                     <Link to={`/Hike/edit/${hike.id}`}>
-                        <button className="btn btn-primary">
+                        <button className="buttonEditHike">
                             Edit
                         </button>
                     </Link>
                     <Link to={`/Hike/details/${hike.id}`}>
-                        <button className="btn btn-primary">
+                        <button className="buttonHikeDetails">
                             Details
                         </button>
                     </Link>

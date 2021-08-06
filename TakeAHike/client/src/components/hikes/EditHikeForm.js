@@ -29,7 +29,7 @@ export const EditHike = () => {
 
     const handleCancelSave = (event) => {
         event.preventDefault()
-        history.push("/Hike")
+        history.push("/")
     }
 
     useEffect(() => {
